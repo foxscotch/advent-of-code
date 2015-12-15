@@ -19,7 +19,7 @@ total_ribbon = 0
 
 for box in box_list:
     volume = box[0] * box[1] * box[2]
-    smallest_perimeter = sorted(box)[0] * 2 + sorted(box)[1] * 2
+    smallest_perimeter = min(box) * 2 + sorted(box)[1] * 2
 
     total_ribbon += volume + smallest_perimeter
 
