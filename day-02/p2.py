@@ -6,7 +6,7 @@ box_list = []
 
 regex = re.compile(r'^(\d+)x(\d+)x(\d+)$')
 
-with open('day-2-input.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     for line in f:
         match = regex.match(line)
         box_list.append((

@@ -1,4 +1,4 @@
-with open('day-03-input.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     puzzle_input = f.read().replace('\n', '')
 
 # Coordinates: (x, y)
