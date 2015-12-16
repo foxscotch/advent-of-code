@@ -22,6 +22,3 @@ for box in box_list:
     total_paper += sum(sides) + min(sides)
 
 print(total_paper)
-
-
-# My answer: 1588178

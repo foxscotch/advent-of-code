@@ -17,6 +17,3 @@ for paren in puzzle_input:
         break
 
 print(current_position)
-
-
-# My answer: 1795

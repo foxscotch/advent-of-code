@@ -24,6 +24,3 @@ for box in box_list:
     total_ribbon += volume + smallest_perimeter
 
 print(total_ribbon)
-
-
-# My answer: 3783758
