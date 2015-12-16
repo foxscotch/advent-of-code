@@ -13,6 +13,3 @@ while True:
 print(number)
 
 # Runs way faster than I expected, lol
-
-
-# My answer: 346386

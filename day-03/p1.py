@@ -49,6 +49,3 @@ print(total_with_presents())
 
 # After running it, this method is clearly FAR faster.
 # We're talking 9.8 seconds versus 0.2.
-
-
-# My answer: 2592

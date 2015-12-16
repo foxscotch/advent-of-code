@@ -15,6 +15,3 @@ print(number)
 # Now that I think about it, starting with 100,000 was probably not the right
 # thing to do. I could've easily never found my answer. But I did, and I guess
 # it probably saved a little time. So okay.
-
-
-# My answer: 9958218

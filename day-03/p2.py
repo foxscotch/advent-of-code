@@ -51,6 +51,3 @@ def total_with_presents():
     return total
 
 print(total_with_presents())
-
-
-# My answer: 2360
