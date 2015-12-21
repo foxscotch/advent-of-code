@@ -1,5 +1,5 @@
 import re
-from numpy import matrix
+from numpy import matrix, uint32
 
 
 instructions = []
@@ -24,33 +24,15 @@ def act(instruction):
     y2 += 1
 
     if action == 'turn on':
-        lights[x1:x2, y1:y2] = 1
+        lights[x1:x2, y1:y2] += 1
     elif action == 'turn off':
-        lights[x1:x2, y1:y2] = 0
+        lights[x1:x2, y1:y2] -= 1
+        lights[lights < 0] = 0
     else:
-        lights[x1:x2, y1:y2] ^= 1
-
-# The e stands for "easy"
-def selection_size_e(instruction):
-    x1, y1 = instruction[1]
-    x2, y2 = instruction[2]
-    x2 += 1
-    y2 += 1
-
-    return lights[x1:x2, y1:y2].flatten().tolist()[0].count(0)
-
-# The m stands for "manual"
-def selection_size_m(instruction):
-    x1, y1 = instruction[1]
-    x2, y2 = instruction[2]
-    x2 += 1
-    y2 += 1
-
-    width = x2 - x1
-    height = y2 - y1
-    return width * height
+        lights[x1:x2, y1:y2] += 2
 
 for step in instructions:
     act(step)
 
-print(lights.flatten().tolist()[0].count(1))
+result_list = lights.flatten().tolist()[0]
+print(sum([item for item in result_list if item > 0]))
