@@ -9,22 +9,23 @@ class Board:
         self.wires = WireManager()
 
         for line in file:
-            tokens = [int(i) if i.isdigit() else i for i in line.split(' ')]
-            self.instructions.append(Instruction(tokens))
+            tokens = [int(i) if i.isdigit() else i.strip() for i in line.split(' ')]
+            self.instructions.append(Instruction(self, tokens))
 
         for instr in self.instructions:
-            for op in instr['operands']:
+            for op in instr.operands:
                 if type(op) is str:
                     self.wires.add_wire(op)
+            self.wires.add_wire(instr.dest)
 
     def run(self):
         skipped = False
 
-        for instr in instructions:
-            if not instr.is_runnable():
-                skipped = True
-            else:
+        for instr in self.instructions:
+            if instr.is_runnable():
                 instr.run()
+            else:
+                skipped = True
             
         if skipped:
             self.run()
@@ -32,21 +33,22 @@ class Board:
 
 class WireManager:
     def __init__(self):
-        self.wires = {}
+        self._wires = {}
 
     def add_wire(self, wire):
-        self.wires[wire.name] = wire
+        wire = Wire(wire)
+        self._wires[wire.name] = wire
         wire.manager = self
 
     def get_wire(self, wire):
-        return self.wires[wire].value
+        return self._wires[wire].value
 
     def set_wire(self, wire, value):
-        self.wires[wire].value = value
+        self._wires[wire].value = value
 
     def check_runnable(self, *wires):
         for wire in wires:
-            if type(wire) != int and self.wires[wire] == None:
+            if type(wire) is not int and self.get_wire(wire) is None:
                 return False
         return True
 
@@ -56,6 +58,9 @@ class Wire:
         self.name = name
         self.value = None
         self.manager = None
+
+    def __str__(self):
+        return '{}={}'.format(self.name, self.value)
 
 
 class Instruction:
@@ -68,13 +73,14 @@ class Instruction:
             self.operands = [tokens[0], tokens[2]]
         else:
             self.operator = 'ASSIGN'
-            self.operands = tokens[0]
+            self.operands = [tokens[0]]
         self.dest = tokens[-1]
+        self.board = board
 
-    def is_runnable():
+    def is_runnable(self):
         return self.board.wires.check_runnable(*self.operands)
 
-    def run():
+    def run(self):
         operands = []
 
         for op in self.operands:
@@ -83,19 +89,19 @@ class Instruction:
             else:
                 operands.append(op)
 
-        elif instr['operator'] == 'NOT':
-            self.board.wires.set_wire(self.dest, operands[0])
-        elif instr['operator'] == 'LSHIFT':
-            pass
-        elif instr['operator'] == 'RSHIFT':
-            pass
-        elif instr['operator'] == 'AND':
-            pass
-        elif instr['operator'] == 'OR':
-            pass
+        if self.operator == 'NOT':
+            self.board.wires.set_wire(self.dest, ~operands[0])
+        elif self.operator == 'LSHIFT':
+            self.board.wires.set_wire(self.dest, operands[0] << operands[1])
+        elif self.operator == 'RSHIFT':
+            self.board.wires.set_wire(self.dest, operands[0] >> operands[1])
+        elif self.operator == 'AND':
+            self.board.wires.set_wire(self.dest, operands[0] & operands[1])
+        elif self.operator == 'OR':
+            self.board.wires.set_wire(self.dest, operands[0] | operands[1])
         else:
             # ASSIGN
-            pass
+            self.board.wires.set_wire(self.dest, operands[0])
 
 
 with open('input.txt', 'r') as file:
