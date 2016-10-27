@@ -7,6 +7,10 @@ with open('input.txt', 'r') as file:
 example_string = r'"""abc""aaa\"aaa""\x27"'             # 23, 11, 12
 test_string = r'"what\\when""smash\"hit""rofl\x04mao"'  # 37, 26, 11
 
+
+# originally was using regex. this faster? maybe. never got the regex to work
+# well enough for timing
+
 def get_diff(s):
     code_len = len(s)
 
