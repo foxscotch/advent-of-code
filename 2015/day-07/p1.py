@@ -1,6 +1,3 @@
-board = None
-
-
 # god, this is so overkill
 
 class Board:
