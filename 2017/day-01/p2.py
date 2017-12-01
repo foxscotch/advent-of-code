@@ -1,15 +1,15 @@
 # Python 3.6.1 / Anaconda 4.4.0
 
 with open('input.txt', 'r') as f:
-    puz_in = [int(i) for i in f.read()[0:-1]]
+    puzzle_input = [int(i) for i in f.read()[0:-1]]
 
-puz_sum = 0
-puz_inc = len(puz_in) // 2
-for pc in range(len(puz_in)):
-    puz_cur = puz_in[pc]
-    puz_next = puz_in[(pc + puz_inc) % len(puz_in)]
+total = 0
+puzzle_inputc = len(puzzle_input) // 2
+for cur_index in range(len(puzzle_input)):
+    current = puzzle_input[cur_index]
+    pnext = puzzle_input[(cur_index + puzzle_input) % len(puzzle_input)]
 
-    if puz_cur == puz_next:
-        puz_sum += puz_cur
+    if current == pnext:
+        total += current
 
-print(puz_sum)
+print(total)
