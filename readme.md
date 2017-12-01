@@ -6,6 +6,10 @@ means, first of all, moving 2015's stuff to a folder named... 2015. As I'm sure
 you can imagine, 2016's stuff is gonna be in a folder named 2016. Also, I'm
 gonna try to get that finished up before December, but uh yeah we'll see.
 
+Actually now it's December 2017 and I forgot about 2016 whoops. I think this
+year I'll do the challenges in whatever language I feel like when I get started.
+I'll list any version/library requirements in the source files, I guess.
+
 My answer for each part is listed in the corresponding challenge file, but the
 answers are not found in the source files (they were before). Because, according
 to [someone](http://forum.blockland.us/index.php?action=profile;u=10721), the
