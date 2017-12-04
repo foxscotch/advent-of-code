@@ -39,3 +39,5 @@ How many steps are required to carry the data from the square identified in your
 puzzle input all the way to the access port?
 
 Your puzzle input is 265149.
+
+Your puzzle answer was 438.
