@@ -34,3 +34,5 @@ iiii oiii ooii oooi oooo is valid.
 oiii ioii iioi iiio is not valid - any of these words can be rearranged to form any other word.
 
 Under this new system policy, how many passphrases are valid?
+
+Your puzzle answer was 223.
