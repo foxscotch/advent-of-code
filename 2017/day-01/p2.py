@@ -1,4 +1,4 @@
-# Python 3.6.1 / Anaconda 4.4.0
+# Python 3.6.1
 
 with open('input.txt', 'r') as f:
     puzzle_input = [int(i) for i in f.read()[0:-1]]

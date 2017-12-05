@@ -1,4 +1,4 @@
-# Python 3.6.1 / Official
+# Python 3.6.1
 
 import re
 

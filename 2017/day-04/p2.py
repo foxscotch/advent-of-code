@@ -1,4 +1,4 @@
-# Python 3.6.1 / Official
+# Python 3.6.1
 
 def is_anagram(w1, w2):
     if len(w1) == len(w2):
