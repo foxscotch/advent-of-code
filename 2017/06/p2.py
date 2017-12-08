@@ -14,16 +14,23 @@ def main():
         banks = [int(i) for i in f.read()[:-1].split('\t')]
 
     seen = []  # List of encountered arrangements.
+    looking_for = None  # Will be used for the bank we want to find again.
 
     i = 0
     counter = 0
     while True:
-        if banks in seen:
+        if banks == looking_for:
             break
+
+        if counter == 0 and banks in seen:
+            counter += 1
+            looking_for = list(banks)
+        elif counter > 0:
+            counter += 1
         
         seen.append(list(banks))
         distribute(banks, banks.index(max(banks)))
-        counter += 1
+        
 
     print(counter)
 
