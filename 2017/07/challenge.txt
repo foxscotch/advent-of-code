@@ -65,6 +65,8 @@ in front of you is much larger.)
 Before you're ready to help them, you need to make sure your information is
 correct. What is the name of the bottom program?
 
+Your puzzle answer was gmcrj.
+
 
 --- Part Two ---
 
@@ -96,3 +98,5 @@ towers balanced. If this change were made, its weight would be 60.
 
 Given that exactly one program is the wrong weight, what would its weight need
 to be to balance the entire tower?
+
+Your answer was 391.
