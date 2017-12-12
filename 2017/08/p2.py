@@ -39,6 +39,7 @@ class Instruction:
                 regs[self.opd] -= self.amt
             else:
                 raise ValueError('Invalid operation.')
+        return regs[self.opd]
 
     def eval_condition(self, regs):
         opd, opt, amt = self.cond_re.match(self.con).group(1, 2, 3)
@@ -81,10 +82,14 @@ def main():
     instructions = get_input()
     regs = Registers()
 
-    for instr in instructions:
-        instr.eval_operation(regs)
+    maximum = 0
 
-    print(max(regs.values()))
+    for instr in instructions:
+        result = instr.eval_operation(regs)
+        if result > maximum:
+            maximum = result
+
+    print(maximum)
 
     # Timing code:
     # instr = Instruction.from_str('ec dec 631 if bb != 147')
