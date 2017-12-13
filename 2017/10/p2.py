@@ -1,6 +1,21 @@
 # Python 3.6.1
 
 class LoopingList(list):
+    def chunks(self):
+        chunks = []
+        for i in range(16):
+            chunks.append(self[i * 16:i * 16 + 1])
+        return chunks
+
+    def xor_chunks(self):
+        return [xor(*l) for l in self.chunks()]
+
+    def hex_chunks(self):
+        return bytes(self.xor_chunks()).hex()
+
+    def reverse(self, pos, length):
+        self[pos] = list(reversed(self[pos:pos + length]))
+
     def __getitem__(self, key):
         if type(key) is int:
             return super().__getitem__(key % len(self))
@@ -25,27 +40,31 @@ class LoopingList(list):
 def default(val, d):
     return d if val is None else val
 
-def reverse(numbers, pos, length):
-    numbers[pos] = list(reversed(numbers[pos:pos + length]))
+def xor(*args):
+    res = args[0]
+    for arg in args[1:]:
+        res = res ^ arg
+    return res
 
 def main():
     numbers = LoopingList(range(256))
-    lengths = [76,1,88,148,166,217,130,0,128,254,16,2,130,71,255,229]
-
-    # Example from challenge text:
-    # numbers = LoopingList([0, 1, 2, 3, 4])
-    # lengths = [3, 4, 1, 5]
+    lengths = b'76,1,88,148,166,217,130,0,128,254,16,2,130,71,255,229'
+    lengths += bytes([17, 31, 73, 47, 23])  # Standard suffix
 
     pos = 0
     skip = 0
 
-    for length in lengths:
-        reverse(numbers, pos, length)
+    for _ in range(1):
+        pos = pos % len(numbers)
+        for length in lengths:
+            numbers.reverse(pos, length)
 
-        pos += skip + length
-        skip += 1
+            pos += skip + length
+            skip += 1
 
-    print(numbers[0] * numbers[1])
+    print(f'pos  {pos}\n'
+          f'skip {skip}\n'
+          f'hash {numbers.hex_chunks()}')
 
 
 if __name__ == '__main__':
