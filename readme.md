@@ -10,6 +10,10 @@ Actually now it's December 2017 and I forgot about 2016 whoops. I think this
 year I'll do the challenges in whatever language I feel like when I get started.
 I'll list any version/library requirements in the source files, I guess.
 
+Whoops it's almost December 2018 and I still haven't finished any of the
+previous years. Oh well. I'll probably do pretty much the exact same thing I did
+for 2017.
+
 My answer for each part is listed in the corresponding challenge file, but the
 answers are not found in the source files (they were before). Because, according
 to [someone](http://forum.blockland.us/index.php?action=profile;u=10721), the
