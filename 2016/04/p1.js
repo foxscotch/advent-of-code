@@ -35,12 +35,12 @@ function getChecksum(name) {
 }
 
 
-count = 0;
+sum = 0;
 
 for (let room of input) {
   let [_, name, id, checksum] = room.match(/([\w-]+)-(\d{3})\[(\w+)\]/);
   if (checksum === getChecksum(name))
-    count++;
+    sum += parseInt(id);
 }
 
-console.log(count);
+console.log(sum);
