@@ -1,14 +1,21 @@
 // Node 11.2.0
 
-fs = require('fs');
+const fs = require('fs');
 
 
-const input = fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
+function getInput() {
+  return fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
+}
 
-const start = process.hrtime.bigint();
+function main() {
+  const input = getInput();
+
+  // Code here
+}
 
 
-// Code here
-
-
-console.log(process.hrtime.bigint() - start);
+if (module === require.main) {
+  const start = process.hrtime.bigint();
+  main();
+  console.log(process.hrtime.bigint() - start);
+}
