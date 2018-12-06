@@ -1,12 +1,20 @@
 # Python 3.6.1
 
 import re
-from collections import namedtuple
-from datetime import datetime
+from collections import defaultdict, namedtuple
+from datetime import datetime, timedelta
 
 
 Record = namedtuple('Record', ['date', 'guard', 'event'])
 
+
+def minutes(start, end):
+    date = start
+    while True:
+        yield date.minute
+        date = date + timedelta(minutes=1)
+        if date == end:
+            break
 
 def get_input():
     input_r = re.compile(r'\[(.+)\] (.+)')
@@ -52,10 +60,25 @@ def main():
     #           <times asleep during 59th minute>
     #       ]
     #   }
-    guards = {}
-    status = 'awake'
+
+    guards = defaultdict(lambda: { 'asleep': 0, 'minutes': [0] * 60 })
+    sleep_time = None
     for record in input:
-        pass
+        if record.event == 'sleep':
+            sleep_time = record.date
+        elif record.event == 'wake':
+            guards[record.guard]['asleep'] += (record.date - sleep_time).seconds // 60
+            for minute in minutes(sleep_time, record.date):
+                guards[record.guard]['minutes'][minute] += 1
+    
+    sleepiest, data = max(guards.items(), key=lambda r: r[1]['asleep'])
+    most_common_minute = None
+    minute_value = 0
+    for i, times in enumerate(data['minutes']):
+        if times > minute_value:
+            most_common_minute = i
+            minute_value = times
+    print(sleepiest * most_common_minute)
 
 
 if __name__ == '__main__':
