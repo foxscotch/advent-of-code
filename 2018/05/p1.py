@@ -8,31 +8,33 @@ def opposite(a, b):
     else:
         return False
 
+def react(l):
+    l = list(l)
+
+    i = 1  # Starting at 1 intentionally, to compare the first two letters
+    while True:
+        if i >= len(l):
+            break
+
+        a = l[i - 1]
+        b = l[i]
+
+        if opposite(a, b):
+            del l[i]
+            del l[i-1]
+            i -= 1
+        else:
+            i += 1
+
+    return len(l)
+
 def get_input():
     with open('input.txt', 'r') as f:
         return list(f.read().strip())
 
 def main():
     input = get_input()
-
-    removed = True
-    while removed:
-        removed = False
-        i = 1  # Starting at 1 intentionally, to compare the first two letters
-        while True:
-            if i >= len(input):
-                break
-
-            a = input[i - 1]
-            b = input[i]
-
-            if opposite(a, b):
-                removed = True
-                del input[i-1:i+1]
-            else:
-                i += 1
-
-    print(len(input))
+    print(react(input))
 
 
 if __name__ == '__main__':
