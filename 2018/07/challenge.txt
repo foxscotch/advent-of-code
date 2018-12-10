@@ -59,3 +59,5 @@ alphabetically. In this example, the steps would be completed as follows:
  - So, in this example, the correct order is CABDFE.
 
 In what order should the steps in your instructions be completed?
+
+Your puzzle answer was EBICGKQOVMYZJAWRDPXFSUTNLH.
