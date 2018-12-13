@@ -2,6 +2,7 @@
 
 import re
 import string
+import time
 from collections import defaultdict
 from functools import total_ordering
 from itertools import cycle
@@ -11,7 +12,18 @@ from itertools import cycle
 class Step:
     def __init__(self, name):
         self.name = name
+        self.work_remaining = ord(name) - 64 + 60
         self.requires = []
+
+    def ready(self):
+        return len(self.requires) == 0
+
+    def finished(self):
+        return self.work_remaining == 0
+
+    def work(self):
+        if self.work_remaining > 0:
+            self.work_remaining -= 1
 
     def require(self, step):
         if step not in self.requires:
@@ -31,26 +43,53 @@ class Step:
         return self.name > other.name
 
 
+class Worker:
+    cur_id = 0
+
+    def __init__(self, steps):
+        self.steps = steps
+        self.current_step = None
+        self.finished = False
+        self.id = Worker.cur_id
+        Worker.cur_id += 1
+
+    def work(self):
+        if self.current_step is None:
+            if not self.get_next():
+                return
+
+        self.current_step.work()
+        if self.current_step.finished():
+            self.steps.satisfy_all(self.current_step)
+            self.get_next()
+
+    def get_next(self):
+        for step in self.steps.values():
+            if step.ready() and step not in self.steps.results:
+                self.current_step = step
+                self.steps.results.append(step)
+                return True
+        self.finished = True
+        return False
+
+
 class StepCollection(dict):
-    def __init__(self):
+    def __init__(self, worker_count):
         super().__init__()
         self.results = []
+        self.workers = [Worker(self) for i in range(worker_count)]
 
     def run(self):
         seconds = 0
         while True:
-            for step in sorted(self.values()):
-                seconds += 1
+            seconds += 1
+            for worker in self.workers:
+                worker.work()
+            if self.all_finished():
+                return seconds
 
-                if step in self.results:
-                    continue
-
-                if len(step.requires) == 0:
-                    self.satisfy_all(step)
-                    self.results.append(step)
-                    if len(self.results) >= 26:
-                        return ''.join([s.name for s in self.results])
-                    break
+    def all_finished(self):
+        return False not in [w.finished for w in self.workers]
 
     def process(self, step, requires):
         self[step].require(self[requires])
@@ -77,7 +116,7 @@ def get_input():
 
 
 def main():
-    steps = StepCollection()
+    steps = StepCollection(5)
     for step, requires in get_input():
         steps.process(step, requires)
     print(steps.run())
