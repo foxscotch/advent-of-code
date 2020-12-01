@@ -51,3 +51,5 @@ and 675. Multiplying them together produces the answer, 241861950.
 
 In your expense report, what is the product of the three entries that sum to
 2020?
+
+Your puzzle answer was 12747392.
