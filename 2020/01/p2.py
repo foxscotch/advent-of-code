@@ -1,7 +1,5 @@
 # Python 3.8.3
 
-from collections import defaultdict
-
 with open('input.txt', 'r') as f:
     puzzle_input = [int(i) for i in f.read().split()]
 
