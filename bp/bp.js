@@ -8,7 +8,7 @@ function getInput() {
 }
 
 function main() {
-  const input = getInput();
+  const puzzle = getInput();
 
   // Code here
 }

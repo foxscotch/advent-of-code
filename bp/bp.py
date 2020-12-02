@@ -5,7 +5,7 @@ def get_input():
         return f.read().split()
 
 def main():
-    input = get_input()
+    puzzle = get_input()
     # Code here
 
 
