@@ -1,4 +1,4 @@
-# Python 3.6.1
+# Python 3.8.3
 
 def get_input():
     with open('input.txt', 'r') as f:
