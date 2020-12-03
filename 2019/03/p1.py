@@ -1,21 +1,46 @@
 # Python 3.8.3
 
+from collections import defaultdict
+
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open('inputx.txt', 'r') as f:
         wires = f.read().split()
         return wires[0].split(','), wires[1].split(',')
 
 def main():
-    w1, w2 = get_input()
-    
-    w1_pos = (0, 0)
-    w2_pos = (0, 0)
-    w1_locations = []
-    shared_locations = []
+    wires = get_input()
 
-    for instr in w1:
-        dir = instr[0]
-        dist = int(instr[1:])
+    positions = defaultdict(int)
+
+    for wire in wires:
+        pos = (0, 0)
+        for instr in wire:
+            dir = instr[0]
+            dist = int(instr[1:])
+
+            for i in range(dist):
+                if dir == 'L':
+                    pos = (pos[0] - 1, pos[1])
+                if dir == 'R':
+                    pos = (pos[0] + 1, pos[1])
+                if dir == 'U':
+                    pos = (pos[0], pos[1] - 1)
+                if dir == 'D':
+                    pos = (pos[0], pos[1] + 1)
+                
+                positions[pos] += 1
+    
+    minimum = 9999999999  # it is what it is
+
+    for pos, count in positions.items():
+        if count > 1:
+            print(pos, count)
+            dist = abs(pos[0]) + abs(pos[1])
+            if dist < minimum:
+                minimum = dist
+    
+    print(minimum)
 
 
 if __name__ == '__main__':
