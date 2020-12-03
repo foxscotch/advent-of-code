@@ -4,14 +4,14 @@ from collections import defaultdict
 
 
 def get_input():
-    with open('inputx.txt', 'r') as f:
+    with open('input.txt', 'r') as f:
         wires = f.read().split()
         return wires[0].split(','), wires[1].split(',')
 
 def main():
     wires = get_input()
 
-    positions = defaultdict(int)
+    positions = defaultdict(lambda: [False, False])
 
     for wire in wires:
         pos = (0, 0)
@@ -29,13 +29,15 @@ def main():
                 if dir == 'D':
                     pos = (pos[0], pos[1] + 1)
                 
-                positions[pos] += 1
+                if wire is wires[0]:
+                    positions[pos][0] = True
+                else:
+                    positions[pos][1] = True
     
     minimum = 9999999999  # it is what it is
 
-    for pos, count in positions.items():
-        if count > 1:
-            print(pos, count)
+    for pos, [a, b] in positions.items():
+        if a and b:
             dist = abs(pos[0]) + abs(pos[1])
             if dist < minimum:
                 minimum = dist
