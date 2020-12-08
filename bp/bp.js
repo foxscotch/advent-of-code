@@ -16,6 +16,6 @@ function main() {
 
 if (module === require.main) {
   const start = process.hrtime.bigint();
-  main();
+  console.log(main());
   console.log(process.hrtime.bigint() - start);
 }
