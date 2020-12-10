@@ -9,7 +9,7 @@ def main():
 
     last_joltage = 0
     one_jolt = 0
-    three_jolts = 1  # this is bad lmao
+    three_jolts = 1
     while len(puzzle) != 0:
         if last_joltage + 1 in puzzle:
             last_joltage = last_joltage + 1
@@ -23,7 +23,6 @@ def main():
     
     print(one_jolt, three_jolts)
     return one_jolt * three_jolts
-
 
 
 if __name__ == '__main__':
