@@ -1,8 +1,8 @@
 # Python 3.8.3
 
-FL = -1
-EM = 0
-OC = 1
+FLOOR = -1
+EMPTY = 0
+OCCUPIED = 1
 
 CHECK_LOCATIONS = (
     (-1, -1), (0, -1), (1, -1),
@@ -11,35 +11,9 @@ CHECK_LOCATIONS = (
 )
 
 
-class GY(list):
-    def __getitem__(self, k):
-        if k < 0:
-            return GX([EM])
-
-        try:
-            return super().__getitem__(k)
-        except IndexError:
-            return GX([EM])
-    
-    def __str__(self):
-        return '\n'.join(str(g) for g in self)
-
-
-class GX(list):
-    def __getitem__(self, k):
-        if k < 0:
-            return EM
-
-        try:
-            return super().__getitem__(k)
-        except IndexError:
-            return EM
-
-    def __str__(self):
-        s = ''
-        for i in self:
-            s += 'L' if i == EM else ('.' if i == FL else '#')
-        return s
+class G(dict):
+    def __missing__(self, k):
+        return EMPTY
 
 
 def check_surrounding(x, y, grid):
@@ -49,48 +23,49 @@ def check_surrounding(x, y, grid):
         i = 0
         while True:
             i += 1
-            v = grid[y + fy*i][x + fx*i]
-            if v is OC:
+            v = grid[x + fx*i, y + fy*i]
+            if v is OCCUPIED:
                 total += 1
                 break
-            elif v is EM:
+            elif v is EMPTY:
                 break
-    
+
     return total
 
 def get_input():
     with open('input.txt', 'r') as f:
-        lines = f.read().split()
-        return GY([GX([EM if s == 'L' else FL for s in l]) for l in lines])
+        d = G()
+        for i, line in enumerate(f.read().split()):
+            for j, char in enumerate(line):
+                d[j, i] = EMPTY if char == 'L' else FLOOR
+        return d
 
 def main():
     grid = get_input()
-    
+
     changed = False
     while True:
         changed = False
-        new_grid = GY([GX(g.copy()) for g in grid])
+        new_grid = G(grid.copy())
 
-        for y in range(len(grid)):
-            for x in range(len(grid[y])):
-                surrounding = check_surrounding(x, y, grid)
-                if grid[y][x] == EM and surrounding == 0:
-                    new_grid[y][x] = OC
-                    changed = True
-                elif grid[y][x] == OC and surrounding >= 5:
-                    new_grid[y][x] = EM
-                    changed = True
-        
+        for (x, y), chair in grid.items():
+            surrounding = check_surrounding(x, y, grid)
+            if chair is EMPTY and surrounding == 0:
+                new_grid[x, y] = OCCUPIED
+                changed = True
+            elif grid[x, y] is OCCUPIED and surrounding >= 5:
+                new_grid[x, y] = EMPTY
+                changed = True
+
         grid = new_grid
 
         if not changed:
             break
     
     count = 0
-    for y in range(len(grid)):
-        for x in range(len(grid[y])):
-            if grid[y][x] == OC:
-                count += 1
+    for (x, y), chair in grid.items():
+        if grid[x, y] is OCCUPIED:
+            count += 1
     return count
 
 
