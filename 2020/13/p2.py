@@ -1,19 +1,32 @@
 # Python 3.8.3
 
-from math import ceil
+from functools import reduce
 
 
+def absolute_modulo(a, b):
+    return ((a % b) + b) % b
 
-def departures(i):
-    last = 0
-    while True:
-        last = last + i
-        yield last
+def inverse_modulo(a, mod):
+    b = a % mod
+    for i in range(mod):
+        if (b * i) % mod == 1:
+            return i
+    return 1
 
-def check_departure(time, bus_id):
-    if time == 0:
-        return True
-    return time % bus_id == 0
+def chinese_remainder(buses):
+    N = reduce(lambda acc, x: acc * x if x else acc, buses)
+
+    def reducer(acc, cur):
+        i, cur = cur
+        if not cur:
+            return acc
+
+        a = absolute_modulo(cur - i, cur)
+        nU = N // cur
+        inverse = inverse_modulo(nU, cur)
+        return acc + (a * nU * inverse)
+
+    return reduce(reducer, enumerate(buses), 0) % N
 
 def get_input():
     with open('input.txt', 'r') as f:
@@ -22,23 +35,7 @@ def get_input():
 
 def main():
     bus_ids = get_input()
-
-    maximum = max(bus_ids)
-    max_position = bus_ids.index(maximum)
-
-    for i in departures(max(bus_ids)):
-        position = 0
-        time = i - max_position
-        for bus_id in bus_ids:
-            if bus_id == 0:
-                position += 1
-            elif time % bus_id == 0:
-                position += 1
-            else:
-                break
-            time += 1
-        if position == len(bus_ids):
-            return i - max_position
+    return round(chinese_remainder(bus_ids))
 
 
 if __name__ == '__main__':
