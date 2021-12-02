@@ -103,13 +103,13 @@ class StepCollection(dict):
         return self[key]
 
     def __repr__(self):
-        return '\n'.join([f"{x}: {x.requires}" for x in sorted(self.values())])
+        return "\n".join([f"{x}: {x.requires}" for x in sorted(self.values())])
 
 
 def get_input():
-    r = re.compile(r'Step (\w) .+ step (\w)')
-    with open('input.txt', 'r') as f:
-        for req in f.read().strip().split('\n'):
+    r = re.compile(r"Step (\w) .+ step (\w)")
+    with open("input.txt", "r") as f:
+        for req in f.read().strip().split("\n"):
             # (<step 1>, <requires step 2>)
             match = r.match(req)
             yield (match[2], match[1])
@@ -122,7 +122,7 @@ def main():
     print(steps.run())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

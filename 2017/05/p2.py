@@ -1,6 +1,6 @@
 # Python 3.6.1
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = []
     for line in f:
         puzzle_input.append(int(line))

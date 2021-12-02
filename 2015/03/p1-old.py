@@ -1,5 +1,5 @@
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read().replace('\n', '')
+with open("input.txt", "r") as f:
+    puzzle_input = f.read().replace("\n", "")
 
 # Coordinates: (x, y)
 class Santa:
@@ -8,13 +8,13 @@ class Santa:
         self.y = 0
 
     def move(self, direction):
-        if direction == '^':
+        if direction == "^":
             self.y += 1
-        elif direction == '>':
+        elif direction == ">":
             self.x += 1
-        elif direction == '<':
+        elif direction == "<":
             self.x += -1
-        elif direction == 'v':
+        elif direction == "v":
             self.y += -1
 
     def get_pos(self):

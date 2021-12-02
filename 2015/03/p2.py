@@ -1,5 +1,5 @@
-with open('input.txt', 'r') as f:
-    puzzle_input = f.read().replace('\n', '')
+with open("input.txt", "r") as f:
+    puzzle_input = f.read().replace("\n", "")
 
 # Coordinates: (x, y)
 class Santa:
@@ -8,13 +8,13 @@ class Santa:
         self.y = 0
 
     def move(self, direction):
-        if direction ==   '^':
-            self.y +=  1
-        elif direction == '>':
-            self.x +=  1
-        elif direction == '<':
+        if direction == "^":
+            self.y += 1
+        elif direction == ">":
+            self.x += 1
+        elif direction == "<":
             self.x += -1
-        elif direction == 'v':
+        elif direction == "v":
             self.y += -1
 
     def get_pos(self):
@@ -43,11 +43,13 @@ for direction in puzzle_input:
     else:
         houses[position] = 1
 
+
 def total_with_presents():
     total = 0
     for num in houses.values():
         if num > 0:
             total += 1
     return total
+
 
 print(total_with_presents())

@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = f.read()
 
 
@@ -8,9 +8,9 @@ current_position = 0
 for paren in puzzle_input:
     current_position += 1
 
-    if paren == '(':
+    if paren == "(":
         current_floor += 1
-    elif paren == ')':
+    elif paren == ")":
         current_floor -= 1
 
     if current_floor < 0:

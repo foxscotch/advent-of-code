@@ -4,7 +4,7 @@ from collections import deque
 from itertools import cycle
 
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = [int(i) for i in f.read().split()]
 
 

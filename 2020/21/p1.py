@@ -4,12 +4,13 @@ from collections import defaultdict
 
 
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         for line in f.read().splitlines():
-            ingredients, allergens = line.split(' (contains ')
+            ingredients, allergens = line.split(" (contains ")
             ingredients = set(ingredients.split())
-            allergens = set(allergens[:-1].split(', '))
+            allergens = set(allergens[:-1].split(", "))
             yield ingredients, allergens
+
 
 def main():
     items = list(get_input())
@@ -33,7 +34,7 @@ def main():
     print(safe_count)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

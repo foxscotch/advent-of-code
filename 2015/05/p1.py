@@ -1,10 +1,11 @@
 def count_vowels(string):
-    vowels = ['a', 'e', 'i', 'o', 'u']
+    vowels = ["a", "e", "i", "o", "u"]
     total = 0
     for char in string:
         if char in vowels:
             total += 1
     return total
+
 
 def contains_doubles(string):
     for i in range(len(string)):
@@ -15,13 +16,9 @@ def contains_doubles(string):
             return False
     return False
 
+
 def no_blacklisted(string):
-    blacklist = [
-        'ab',
-        'cd',
-        'pq',
-        'xy'
-    ]
+    blacklist = ["ab", "cd", "pq", "xy"]
     for i in range(len(string)):
         try:
             if string[i] + string[i + 1] in blacklist:
@@ -34,19 +31,15 @@ def no_blacklisted(string):
 # I made the other three functions first, then I decided it would be better if
 # all the checks were part of a single loop, and therefore a single function.
 
+
 def is_valid(string):
     contains_doubles = False
     no_blacklisted = True
 
-    vowels = ['a', 'e', 'i', 'o', 'u']
+    vowels = ["a", "e", "i", "o", "u"]
     total_vowels = 0
 
-    blacklist = [
-        'ab',
-        'cd',
-        'pq',
-        'xy'
-    ]
+    blacklist = ["ab", "cd", "pq", "xy"]
 
     for i in range(len(string)):
         if string[i] in vowels:
@@ -64,7 +57,7 @@ def is_valid(string):
     return total_vowels >= 3 and contains_doubles and no_blacklisted
 
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     total = 0
     for line in f:
         if is_valid(line):

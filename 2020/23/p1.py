@@ -1,5 +1,6 @@
 # Python 3.8.3
 
+
 class Repeating(list):
     def __getitem__(self, k):
         return super().__getitem__(k % len(self))
@@ -16,8 +17,8 @@ def main():
     while turns < 100:
         cur_index = puzzle.index(cur)
 
-        #print(f'-- move {turns + 1} --')
-        #print('cups:', str(puzzle).replace(',', '').replace(str(cur), f'({cur})')[1:-1])
+        # print(f'-- move {turns + 1} --')
+        # print('cups:', str(puzzle).replace(',', '').replace(str(cur), f'({cur})')[1:-1])
 
         a = puzzle.pop(cur_index + 1)
         cur_index = puzzle.index(cur)
@@ -25,7 +26,7 @@ def main():
         cur_index = puzzle.index(cur)
         c = puzzle.pop(cur_index + 1)
 
-        #print(f'pick up: {a}, {b}, {c}')
+        # print(f'pick up: {a}, {b}, {c}')
 
         dest = cur - 1
         while dest not in puzzle:
@@ -34,8 +35,8 @@ def main():
             else:
                 dest -= 1
 
-        #print(f'destination: {dest}')
-        #print()
+        # print(f'destination: {dest}')
+        # print()
 
         dest_index = puzzle.index(dest)
         puzzle.insert(dest_index + 1, c)
@@ -49,7 +50,7 @@ def main():
     print(puzzle)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

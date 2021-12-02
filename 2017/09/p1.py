@@ -5,8 +5,8 @@ from anytree import AnyNode as Node, PreOrderIter
 
 
 def get_input():
-    groups = ''
-    with open('input.txt', 'r') as f:
+    groups = ""
+    with open("input.txt", "r") as f:
         i = 0
         stream = f.read()
         garbage = False
@@ -15,29 +15,31 @@ def get_input():
                 break
             char = stream[i]
 
-            if not garbage and char == '<':
+            if not garbage and char == "<":
                 garbage = True
-            elif garbage and char == '>':
+            elif garbage and char == ">":
                 garbage = False
-            elif garbage and char == '!':
+            elif garbage and char == "!":
                 i += 1
-            elif not garbage and char != ',':
+            elif not garbage and char != ",":
                 groups += char
 
             i += 1
     return groups
 
+
 def build_tree(groups):
     root = Node()
     parent = root
     for char in groups[1:-1]:
-        if char == '{':
+        if char == "{":
             node = Node()
             node.parent = parent
             parent = node
-        elif char == '}':
+        elif char == "}":
             parent = parent.parent
     return root
+
 
 def score_tree(tree):
     score = 0
@@ -45,10 +47,11 @@ def score_tree(tree):
         score += node.depth + 1
     return score
 
+
 def main():
     tree = build_tree(get_input())
     print(score_tree(tree))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

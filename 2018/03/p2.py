@@ -4,25 +4,31 @@ import re
 from collections import namedtuple
 
 
-Claim = namedtuple('Claim', ['id', 'x', 'y', 'w', 'h'])
+Claim = namedtuple("Claim", ["id", "x", "y", "w", "h"])
 
 
 def get_input():
-    r = re.compile(r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)')
+    r = re.compile(r"#(\d+) @ (\d+),(\d+): (\d+)x(\d+)")
     input = []
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         for line in f:
             match = r.match(line)
-            input.append(Claim(int(match[1]),
-                               int(match[2]),
-                               int(match[3]),
-                               int(match[4]),
-                               int(match[5])))
+            input.append(
+                Claim(
+                    int(match[1]),
+                    int(match[2]),
+                    int(match[3]),
+                    int(match[4]),
+                    int(match[5]),
+                )
+            )
     return input
+
 
 def print_grid(grid):
     for row in grid:
-        print(' '.join((str(v) for v in row)))
+        print(" ".join((str(v) for v in row)))
+
 
 def main(dim=1000):
     input = get_input()
@@ -47,7 +53,7 @@ def main(dim=1000):
     print(no_overlap.id)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

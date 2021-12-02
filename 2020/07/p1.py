@@ -5,7 +5,7 @@ import regex
 import networkx
 
 
-pattern = regex.compile(r'^(\w+ \w+) bags contain (?:(\d+ \w+ \w+) bags?(?:, )?)*')
+pattern = regex.compile(r"^(\w+ \w+) bags contain (?:(\d+ \w+ \w+) bags?(?:, )?)*")
 
 
 def can_contain(bag_name, graph):
@@ -16,12 +16,16 @@ def can_contain(bag_name, graph):
         s.update(can_contain(successor, graph))
     return s
 
+
 def process_line(line):
     m = pattern.match(line)
-    return m.group(1), [(int(s.split(' ', 1)[0]), s.split(' ', 1)[1]) for s in m.captures(2)]
+    return m.group(1), [
+        (int(s.split(" ", 1)[0]), s.split(" ", 1)[1]) for s in m.captures(2)
+    ]
+
 
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         lines = [process_line(l) for l in f.read().splitlines()]
         graph = networkx.DiGraph()
         for container, contained_tuples in lines:
@@ -29,12 +33,13 @@ def get_input():
                 graph.add_edge(contained, container, count=count)
         return graph
 
+
 def main():
     puzzle = get_input()
-    print(len(can_contain('shiny gold', puzzle)))
+    print(len(can_contain("shiny gold", puzzle)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

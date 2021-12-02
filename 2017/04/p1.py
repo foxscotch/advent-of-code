@@ -1,9 +1,9 @@
 # Python 3.6.1
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = []
     for line in f:
-        puzzle_input.append(line.strip().split(' '))
+        puzzle_input.append(line.strip().split(" "))
 
 total = 0
 for phrase in puzzle_input:

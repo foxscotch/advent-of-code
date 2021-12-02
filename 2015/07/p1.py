@@ -1,12 +1,13 @@
 # god, this is so overkill
 
+
 class Board:
     def __init__(self, file):
         self.instructions = []
         self.wires = WireManager()
 
         for line in file:
-            tokens = [int(i) if i.isdigit() else i.strip() for i in line.split(' ')]
+            tokens = [int(i) if i.isdigit() else i.strip() for i in line.split(" ")]
             self.instructions.append(Instruction(self, tokens))
 
         for instr in self.instructions:
@@ -23,7 +24,7 @@ class Board:
                 instr.run()
             else:
                 skipped = True
-            
+
         if skipped:
             self.run()
 
@@ -57,19 +58,19 @@ class Wire:
         self.manager = None
 
     def __str__(self):
-        return '{}={}'.format(self.name, self.value)
+        return "{}={}".format(self.name, self.value)
 
 
 class Instruction:
     def __init__(self, board, tokens):
         if len(tokens) == 4:
-            self.operator = 'NOT'
+            self.operator = "NOT"
             self.operands = [tokens[1]]
         elif len(tokens) == 5:
             self.operator = tokens[1]
             self.operands = [tokens[0], tokens[2]]
         else:
-            self.operator = 'ASSIGN'
+            self.operator = "ASSIGN"
             self.operands = [tokens[0]]
         self.dest = tokens[-1]
         self.board = board
@@ -86,24 +87,24 @@ class Instruction:
             else:
                 operands.append(op)
 
-        if self.operator == 'NOT':
+        if self.operator == "NOT":
             self.board.wires.set_wire(self.dest, ~operands[0])
-        elif self.operator == 'LSHIFT':
+        elif self.operator == "LSHIFT":
             self.board.wires.set_wire(self.dest, operands[0] << operands[1])
-        elif self.operator == 'RSHIFT':
+        elif self.operator == "RSHIFT":
             self.board.wires.set_wire(self.dest, operands[0] >> operands[1])
-        elif self.operator == 'AND':
+        elif self.operator == "AND":
             self.board.wires.set_wire(self.dest, operands[0] & operands[1])
-        elif self.operator == 'OR':
+        elif self.operator == "OR":
             self.board.wires.set_wire(self.dest, operands[0] | operands[1])
         else:
             # ASSIGN
             self.board.wires.set_wire(self.dest, operands[0])
 
 
-with open('input.txt', 'r') as file:
+with open("input.txt", "r") as file:
     board = Board(file)
 
 
 board.run()
-print(board.wires.get_wire('a'))
+print(board.wires.get_wire("a"))

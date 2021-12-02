@@ -22,4 +22,4 @@ while cur_num != puzzle_input:
 
     cur_num += 1
 
-print('RESULT {}'.format(abs(x) + abs(y)))
+print("RESULT {}".format(abs(x) + abs(y)))

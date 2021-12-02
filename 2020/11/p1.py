@@ -5,9 +5,14 @@ EMPTY = 0
 OCCUPIED = 1
 
 CHECK_LOCATIONS = (
-    (-1, -1), (0, -1), (1, -1),
-    (-1,  0),          (1,  0),
-    (-1,  1), (0,  1), (1,  1),
+    (-1, -1),
+    (0, -1),
+    (1, -1),
+    (-1, 0),
+    (1, 0),
+    (-1, 1),
+    (0, 1),
+    (1, 1),
 )
 
 
@@ -20,18 +25,20 @@ def check_surrounding(x, y, grid):
     total = 0
 
     for fx, fy in CHECK_LOCATIONS:
-        if grid[x + fx*1, y + fy*1] is OCCUPIED:
+        if grid[x + fx * 1, y + fy * 1] is OCCUPIED:
             total += 1
 
     return total
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         d = G()
         for i, line in enumerate(f.read().split()):
             for j, char in enumerate(line):
-                d[j, i] = EMPTY if char == 'L' else FLOOR
+                d[j, i] = EMPTY if char == "L" else FLOOR
         return d
+
 
 def main():
     grid = get_input()
@@ -54,7 +61,7 @@ def main():
 
         if not changed:
             break
-    
+
     count = 0
     for (x, y), chair in grid.items():
         if grid[x, y] is OCCUPIED:
@@ -62,7 +69,7 @@ def main():
     return count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

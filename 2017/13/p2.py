@@ -35,11 +35,11 @@ class Firewall:
             step += 1
 
     def move_once(self, step):
-            layer = self.layers[self.pos]
-            if layer is not None:
-                if step % layer == 1:
-                    self.penalty += self.pos * (layer // 2 + 1)
-                    self.caught = True
+        layer = self.layers[self.pos]
+        if layer is not None:
+            if step % layer == 1:
+                self.penalty += self.pos * (layer // 2 + 1)
+                self.caught = True
 
     def reset(self):
         self.pos = -1
@@ -47,13 +47,14 @@ class Firewall:
         self.caught = False
 
     def __repr__(self):
-        return f'Firewall({self.pos}, {self.penalty}, {self.caught})'
+        return f"Firewall({self.pos}, {self.penalty}, {self.caught})"
 
 
 def get_input():
-    r = re.compile(r'(\d{1,2}): (\d{1,2})').match
-    with open('input.txt', 'r') as f:
+    r = re.compile(r"(\d{1,2}): (\d{1,2})").match
+    with open("input.txt", "r") as f:
         return [(int(r(l).group(1)), int(r(l).group(2))) for l in f]
+
 
 def main():
     inp = get_input()
@@ -71,5 +72,5 @@ def main():
     print(delay)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

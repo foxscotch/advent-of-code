@@ -8,12 +8,7 @@ EAST = 90
 SOUTH = 180
 WEST = 270
 
-DIRECTIONS = {
-    'N': NORTH,
-    'E': EAST,
-    'S': SOUTH,
-    'W': WEST
-}
+DIRECTIONS = {"N": NORTH, "E": EAST, "S": SOUTH, "W": WEST}
 
 
 class V:
@@ -25,7 +20,7 @@ class V:
         theta = radians(angle)
         return V(
             round(self.x * cos(theta) - self.y * sin(theta)),
-            round(self.x * sin(theta) + self.y * cos(theta))
+            round(self.x * sin(theta) + self.y * cos(theta)),
         )
 
     def __add__(self, other):
@@ -46,7 +41,7 @@ class V:
         return V(-self.x, -self.y)
 
     def __str__(self):
-        return f'V({self.x}, {self.y})'
+        return f"V({self.x}, {self.y})"
 
 
 class Ship:
@@ -78,19 +73,20 @@ class Ship:
 
 
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return [(s[0], int(s[1:])) for s in f.read().split()]
+
 
 def main():
     puzzle = get_input()
 
     ship = Ship()
     for instr, i in puzzle:
-        if instr in 'NESW':
+        if instr in "NESW":
             ship.move_waypoint(i, instr)
-        elif instr == 'L':
+        elif instr == "L":
             ship.rotate_waypoint(i)
-        elif instr == 'R':
+        elif instr == "R":
             ship.rotate_waypoint(-i)
         else:
             ship.move_to_waypoint(i)
@@ -98,7 +94,7 @@ def main():
     return abs(ship.pos.x) + abs(ship.pos.y)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

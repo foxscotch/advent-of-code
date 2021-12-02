@@ -1,8 +1,10 @@
 # Python 3.8.3
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return set(int(i) for i in f.read().split())
+
 
 def main():
     puzzle = get_input()
@@ -20,12 +22,12 @@ def main():
             last_joltage = last_joltage + 3
             three_jolts += 1
         puzzle.remove(last_joltage)
-    
+
     print(one_jolt, three_jolts)
     return one_jolt * three_jolts
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

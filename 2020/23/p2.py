@@ -1,5 +1,6 @@
 # Python 3.8.3
 
+
 class Node:
     def __init__(self, value, next=None, prev=None):
         self.value = value
@@ -39,16 +40,16 @@ class CircularLinkedList:
 
 
 def main():
-    puzzle = CircularLinkedList('I', [9, 4, 2, 3, 8, 7, 6, 1, 5])
-    #puzzle += list(range(max(puzzle), 1_000_001))
+    puzzle = CircularLinkedList("I", [9, 4, 2, 3, 8, 7, 6, 1, 5])
+    # puzzle += list(range(max(puzzle), 1_000_001))
 
     cur = puzzle[0]
     turns = 0
     while turns < 1_000_000:
         cur_index = puzzle.index(cur)
 
-        #print(f'-- move {turns + 1} --')
-        #print('cups:', str(puzzle).replace(',', '').replace(str(cur), f'({cur})')[1:-1])
+        # print(f'-- move {turns + 1} --')
+        # print('cups:', str(puzzle).replace(',', '').replace(str(cur), f'({cur})')[1:-1])
 
         a = puzzle.pop(cur_index + 1)
         cur_index = puzzle.index(cur)
@@ -56,7 +57,7 @@ def main():
         cur_index = puzzle.index(cur)
         c = puzzle.pop(cur_index + 1)
 
-        #print(f'pick up: {a}, {b}, {c}')
+        # print(f'pick up: {a}, {b}, {c}')
 
         dest = cur - 1
         while dest not in puzzle:
@@ -65,8 +66,8 @@ def main():
             else:
                 dest -= 1
 
-        #print(f'destination: {dest}')
-        #print()
+        # print(f'destination: {dest}')
+        # print()
 
         dest_index = puzzle.index(dest)
         puzzle.insert(dest_index + 1, c)
@@ -77,10 +78,10 @@ def main():
 
         turns += 1
 
-    #print(puzzle)
+    # print(puzzle)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

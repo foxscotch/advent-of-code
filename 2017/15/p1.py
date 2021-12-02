@@ -7,8 +7,10 @@ last_16 = 0b1111111111111111
 def generate(start, factor):
     return (start * factor) % divisor
 
+
 def compare(gen_a, gen_b):
     return (gen_a & last_16) == (gen_b & last_16)
+
 
 def main():
     gen_a = 703
@@ -26,5 +28,5 @@ def main():
     print(counter)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

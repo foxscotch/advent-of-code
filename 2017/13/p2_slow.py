@@ -42,6 +42,7 @@ class Firewall:
             if layer is not None:
                 layer.move_scanner()
 
+
 class Layer:
     def __init__(self, range):
         self.range = range
@@ -59,13 +60,14 @@ class Layer:
             self.moving_down = not self.moving_down
 
     def __repr__(self):
-        return f'Layer({len(self.list)})'
+        return f"Layer({len(self.list)})"
 
 
 def get_input():
-    r = re.compile(r'(\d{1,2}): (\d{1,2})').match
-    with open('input.txt', 'r') as f:
+    r = re.compile(r"(\d{1,2}): (\d{1,2})").match
+    with open("input.txt", "r") as f:
         return [(int(r(l).group(1)), int(r(l).group(2))) for l in f]
+
 
 def main():
     inp = get_input()
@@ -84,5 +86,5 @@ def main():
     print(delay)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

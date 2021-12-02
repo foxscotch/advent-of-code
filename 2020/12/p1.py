@@ -5,12 +5,7 @@ EAST = 90
 SOUTH = 180
 WEST = 270
 
-DIRECTIONS = {
-    'N': NORTH,
-    'E': EAST,
-    'S': SOUTH,
-    'W': WEST
-}
+DIRECTIONS = {"N": NORTH, "E": EAST, "S": SOUTH, "W": WEST}
 
 
 class Ship:
@@ -44,19 +39,20 @@ class Ship:
 
 
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return [(s[0], int(s[1:])) for s in f.read().split()]
+
 
 def main():
     puzzle = get_input()
 
     ship = Ship()
     for instr, i in puzzle:
-        if instr in 'NESW':
+        if instr in "NESW":
             ship.move(i, instr)
-        elif instr == 'L':
+        elif instr == "L":
             ship.turn_left(i)
-        elif instr == 'R':
+        elif instr == "R":
             ship.turn_right(i)
         else:
             ship.move(i)
@@ -65,7 +61,7 @@ def main():
     return abs(x) + abs(y)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

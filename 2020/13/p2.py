@@ -6,12 +6,14 @@ from functools import reduce
 def absolute_modulo(a, b):
     return ((a % b) + b) % b
 
+
 def inverse_modulo(a, mod):
     b = a % mod
     for i in range(mod):
         if (b * i) % mod == 1:
             return i
     return 1
+
 
 def chinese_remainder(buses):
     N = reduce(lambda acc, x: acc * x if x else acc, buses)
@@ -28,17 +30,19 @@ def chinese_remainder(buses):
 
     return reduce(reducer, enumerate(buses), 0) % N
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         lines = f.read().split()
-        return [int(i) if i.isnumeric() else 0 for i in lines[1].split(',')]
+        return [int(i) if i.isnumeric() else 0 for i in lines[1].split(",")]
+
 
 def main():
     bus_ids = get_input()
     return round(chinese_remainder(bus_ids))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

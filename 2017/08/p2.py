@@ -6,6 +6,7 @@ from timeit import timeit
 
 class Registers(dict):
     """Simple dict-based class that sets a default value on missing keys."""
+
     def __missing__(self, key):
         self[key] = 0
         return self[key]
@@ -13,8 +14,9 @@ class Registers(dict):
 
 class Instruction:
     """Class for holding register instructions."""
-    instr_re = re.compile(r'(\w+) (inc|dec) (-?\d+) if (\w+ [<>=!]{1,2} -?\d+)')
-    cond_re = re.compile(r'(\w+) ([<>=!]{1,2}) (-?\d+)')
+
+    instr_re = re.compile(r"(\w+) (inc|dec) (-?\d+) if (\w+ [<>=!]{1,2} -?\d+)")
+    cond_re = re.compile(r"(\w+) ([<>=!]{1,2}) (-?\d+)")
 
     def __init__(self, operand, operation, amount, condition):
         self.opd = operand
@@ -33,31 +35,31 @@ class Instruction:
 
     def eval_operation(self, regs):
         if self.eval_condition(regs):
-            if self.opt == 'inc':
+            if self.opt == "inc":
                 regs[self.opd] += self.amt
-            elif self.opt == 'dec':
+            elif self.opt == "dec":
                 regs[self.opd] -= self.amt
             else:
-                raise ValueError('Invalid operation.')
+                raise ValueError("Invalid operation.")
         return regs[self.opd]
 
     def eval_condition(self, regs):
         opd, opt, amt = self.cond_re.match(self.con).group(1, 2, 3)
         amt = int(amt)
-        if opt == '>':
+        if opt == ">":
             return regs[opd] > amt
-        elif opt == '<':
+        elif opt == "<":
             return regs[opd] < amt
-        elif opt == '>=':
+        elif opt == ">=":
             return regs[opd] >= amt
-        elif opt == '<=':
+        elif opt == "<=":
             return regs[opd] <= amt
-        elif opt == '==':
+        elif opt == "==":
             return regs[opd] == amt
-        elif opt == '!=':
+        elif opt == "!=":
             return regs[opd] != amt
         else:
-            raise ValueError('Invalid condition operator.')
+            raise ValueError("Invalid condition operator.")
 
     def eval_condition_eval(self, regs):
         """
@@ -66,13 +68,13 @@ class Instruction:
         determined that the manual version takes about 40% of the time this one
         does, but I wanted to keep it here for posterity.
         """
-        condition = re.sub(r'([a-z]+)', 'regs["\g<1>"]', self.con)
+        condition = re.sub(r"([a-z]+)", 'regs["\g<1>"]', self.con)
         return eval(condition)
 
 
 def get_input():
     instructions = []
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         for line in f:
             instructions.append(Instruction.from_str(line))
     return instructions
@@ -97,6 +99,5 @@ def main():
     # print(f'Using eval: {timeit(lambda: instr.eval_condition_eval(regs))}')
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

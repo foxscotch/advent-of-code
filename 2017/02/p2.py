@@ -3,10 +3,10 @@
 import re
 
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = []
     for line in f:
-        puzzle_input.append([int(i) for i in re.split('\s', line)[:-1]])
+        puzzle_input.append([int(i) for i in re.split("\s", line)[:-1]])
 
 total = 0
 for row in puzzle_input:

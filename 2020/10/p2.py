@@ -10,9 +10,11 @@ def count_paths(chain):
         d[i] = d[i - 3] + d[i - 2] + d[i - 1]
     return d[i]
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return set(int(i) for i in f.read().split())
+
 
 def main():
     puzzle = get_input()
@@ -26,7 +28,7 @@ def main():
     return d[i]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

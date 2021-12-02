@@ -1,8 +1,9 @@
 # Python 3.6.1
 
+
 def main():
-    inp = 'oundnydw'
+    inp = "oundnydw"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

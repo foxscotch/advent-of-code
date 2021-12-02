@@ -4,7 +4,7 @@ import re
 
 
 class Rule:
-    PATTERN = re.compile(r'(\d+): (\d+|\"[ab]\")( \d+)?(?: \| (\d+)( \d+)?)?')
+    PATTERN = re.compile(r"(\d+): (\d+|\"[ab]\")( \d+)?(?: \| (\d+)( \d+)?)?")
     RULES = {}
 
     def __init__(self, string):
@@ -33,32 +33,32 @@ class Rule:
         if sub1_next >= 0:
             left += self.RULES[sub1_next].construct_pattern()
 
-        right =''
+        right = ""
         if sub2_cur >= 0:
             right += self.RULES[sub2_cur].construct_pattern()
         if sub2_next >= 0:
             right += self.RULES[sub2_next].construct_pattern()
 
-        return f'({left}|{right})' if right else left
+        return f"({left}|{right})" if right else left
 
     def __repr__(self):
         if self.letter:
-            return 'Rule("{}: \'{}\'")'.format(self.id, self.letter)
+            return "Rule(\"{}: '{}'\")".format(self.id, self.letter)
         return 'Rule("{}: {} {} | {} {}")'.format(
             self.id,
             self.subrule1[0],
             self.subrule1[1],
             self.subrule2[0],
-            self.subrule2[1]
+            self.subrule2[1],
         )
 
 
-
 def get_input():
-    with open('input.txt', 'r') as f:
-        rules, messages = f.read().split('\n\n')
+    with open("input.txt", "r") as f:
+        rules, messages = f.read().split("\n\n")
         yield [Rule(s) for s in rules.splitlines()]
         yield messages.splitlines()
+
 
 def main():
     rules, messages = get_input()
@@ -71,7 +71,7 @@ def main():
     return total
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

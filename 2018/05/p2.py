@@ -11,6 +11,7 @@ def opposite(a, b):
     else:
         return False
 
+
 def react(l):
     l = list(l)
 
@@ -24,29 +25,31 @@ def react(l):
 
         if opposite(a, b):
             del l[i]
-            del l[i-1]
+            del l[i - 1]
             i -= 1
         else:
             i += 1
 
     return len(l)
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return f.read().strip()
+
 
 def main():
     input = get_input()
 
     shortest = len(input)
     for char in string.ascii_lowercase:
-        result = react(input.replace(char, '').replace(char.upper(), ''))
+        result = react(input.replace(char, "").replace(char.upper(), ""))
         if result < shortest:
             shortest = result
     print(shortest)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

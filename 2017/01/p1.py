@@ -1,6 +1,6 @@
 # Python 3.6.1
 
-with open('input.txt', 'r') as f:
+with open("input.txt", "r") as f:
     puzzle_input = [int(i) for i in f.read()[0:-1]]
 
 total = 0

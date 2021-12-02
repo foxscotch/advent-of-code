@@ -9,7 +9,7 @@ class Tracker:
         self.turn = 1
 
         for n in puzzle:
-            print(f'Turn {self.turn}: speaking {n}')
+            print(f"Turn {self.turn}: speaking {n}")
             self.numbers[n] = (self.turn, 1)
             self.turn += 1
 
@@ -28,7 +28,9 @@ class Tracker:
             self.turn += 1
 
     def speak(self, n, spoken=0):
-        print(f'Turn {self.turn}: speaking {n}, last was {self.last} on turn {self.numbers[self.last]}')
+        print(
+            f"Turn {self.turn}: speaking {n}, last was {self.last} on turn {self.numbers[self.last]}"
+        )
         self.last = n
         self.numbers[n] = (self.turn, spoken + 1)
 
@@ -40,7 +42,7 @@ def main():
     return t.run(10)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

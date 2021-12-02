@@ -1,5 +1,6 @@
 # Python 3.6.1
 
+
 def opposite(a, b):
     if a.isupper() and a.lower() == b:
         return True
@@ -7,6 +8,7 @@ def opposite(a, b):
         return True
     else:
         return False
+
 
 def react(l):
     l = list(l)
@@ -21,23 +23,25 @@ def react(l):
 
         if opposite(a, b):
             del l[i]
-            del l[i-1]
+            del l[i - 1]
             i -= 1
         else:
             i += 1
 
     return len(l)
 
+
 def get_input():
-    with open('input.txt', 'r') as f:
+    with open("input.txt", "r") as f:
         return list(f.read().strip())
+
 
 def main():
     input = get_input()
     print(react(input))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
 
     start = time.perf_counter()

@@ -1,5 +1,6 @@
 # Python 3.6.1
 
+
 def distribute(banks, pos):
     blocks = banks[pos]
     banks[pos] = 0
@@ -9,9 +10,10 @@ def distribute(banks, pos):
         blocks -= 1
         i += 1
 
+
 def main():
-    with open('input.txt', 'r') as f:
-        banks = [int(i) for i in f.read()[:-1].split('\t')]
+    with open("input.txt", "r") as f:
+        banks = [int(i) for i in f.read()[:-1].split("\t")]
 
     seen = []  # List of encountered arrangements.
     looking_for = None  # Will be used for the bank we want to find again.
@@ -27,12 +29,12 @@ def main():
             looking_for = list(banks)
         elif counter > 0:
             counter += 1
-        
+
         seen.append(list(banks))
         distribute(banks, banks.index(max(banks)))
-        
 
     print(counter)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

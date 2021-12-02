@@ -1,5 +1,6 @@
-with open('input.txt', 'r') as file:
-    input = file.read().split('\n')
+with open("input.txt", "r") as file:
+    input = file.read().split("\n")
+
 
 class Traveler:
     def __init__(self):
@@ -14,10 +15,12 @@ class Traveler:
     def get_city(self, city_name):
         return self._cities[city_name]
 
+
 class City:
     def __init__(self, name, traveler):
         self.name = name
         self.traveler = traveler
+
 
 class Path:
     def __init__(self, city1, city2, dist, traveler):
@@ -28,11 +31,10 @@ class Path:
 
     @staticmethod
     def from_string(s, traveler):
-        split = s.split(' ')
+        split = s.split(" ")
 
         start = split[0]
         end = split[2]
         dist = split[4]
 
         return Path(start, end, dist, traveler)
-
