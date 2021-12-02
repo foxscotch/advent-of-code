@@ -1,15 +1,12 @@
 // Node 11.2.0
 
-fs = require('fs');
+fs = require("fs");
 
+const input = fs.readFileSync("input.txt", "utf-8").split("\n");
 
-const input = fs.readFileSync('input.txt', 'utf-8').split('\n');
-
-
-function validTriangle({a, b, c}) {
+function validTriangle({ a, b, c }) {
   return a + b > c && b + c > a && c + a > b;
 }
-
 
 const tris = [];
 
@@ -48,8 +45,6 @@ for (let line of input) {
   }
 }
 
-for (let tri of tris)
-  if (validTriangle(tri))
-    count++;
+for (let tri of tris) if (validTriangle(tri)) count++;
 
 console.log(count);

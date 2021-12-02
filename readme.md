@@ -1,4 +1,4 @@
-These are my solutions for the [Advent of Code](http://adventofcode.com/).  
+These are my solutions for the [Advent of Code](http://adventofcode.com/).
 2015 is in Python (CPython 3.5.2), and 2016 will be in JavaScript (Node 7.0.0).
 The rest are in pretty much whatever. Usually one of those two though.
 
@@ -18,6 +18,8 @@ for 2017.
 Wow.......... yeah. 2020 now. This year I am aiming to do all of them as they
 come. I'll also try to complete some from previous years that I didn't get to.
 Might continue doing that after Christmas too. Maybe. No promises.
+
+Uh oh 2021. Maybe I will get a better rate.
 
 My answer for each part is listed in the corresponding challenge file, but the
 answers are not found in the source files (they were before). Because, according

@@ -3,7 +3,6 @@
 const divisor = 2147483647;
 const last16 = 0b1111111111111111;
 
-
 function generate(start, factor) {
   return (start * factor) % divisor;
 }
@@ -20,15 +19,13 @@ function main() {
 
   counter = 0;
   for (let i = 0; i < 40000000; i++) {
-    if (compare(genA, genB))
-      counter++;
+    if (compare(genA, genB)) counter++;
     genA = generate(genA, aFactor);
     genB = generate(genB, bFactor);
   }
 
   console.log(counter);
 }
-
 
 if (require.main == module) {
   main();

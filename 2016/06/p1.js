@@ -1,10 +1,9 @@
 // Node 11.2.0
 
-const fs = require('fs');
-
+const fs = require("fs");
 
 function getInput() {
-  return fs.readFileSync('input.txt', 'utf-8').trim().split('\n');
+  return fs.readFileSync("input.txt", "utf-8").trim().split("\n");
 }
 
 function main() {
@@ -16,21 +15,18 @@ function main() {
 
     for (let msg of input) {
       const char = msg[i];
-      if (typeof positions[i][char] === 'undefined')
-        positions[i][char] = 1;
-      else
-        positions[i][char]++;
+      if (typeof positions[i][char] === "undefined") positions[i][char] = 1;
+      else positions[i][char]++;
     }
   }
 
   for (let ltrs of positions) {
-    const ltr = Object.entries(ltrs).reduce((a, b) => a[1] > b[1] ? a : b);
+    const ltr = Object.entries(ltrs).reduce((a, b) => (a[1] > b[1] ? a : b));
     process.stdout.write(ltr[0]);
   }
 
   console.log();
 }
-
 
 if (module === require.main) {
   const start = process.hrtime.bigint();
