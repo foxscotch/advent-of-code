@@ -3,13 +3,21 @@
 
 def get_input():
     with open("input.txt", "r") as f:
-        return f.read().split()
+        return [int(i) for i in f.read().split()]
 
 
 def main():
     puzzle = get_input()
 
-    # Code here
+    count = 0
+    prev = puzzle[0]
+
+    for depth in puzzle[1:]:
+        if depth > prev:
+            count += 1
+        prev = depth
+
+    return count
 
 
 if __name__ == "__main__":
