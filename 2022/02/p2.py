@@ -9,23 +9,12 @@ shapes = {
 
 
 def next_better(to_beat):
-    if to_beat == 'rock':
-        return 'paper'
-    elif to_beat == 'paper':
-        return 'scissors'
-    else:
-        return 'rock'
+    bettering = ['rock', 'paper', 'scissors', 'rock']
+    return bettering[bettering.index(to_beat) + 1]
 
 def next_worse(to_lose_to):
-    if to_lose_to == 'rock':
-        return 'scissors'
-    elif to_lose_to == 'paper':
-        return 'rock'
-    else:
-        return 'paper'
-
-def same(to_draw_with):
-    return to_draw_with
+    worsening = ['rock', 'scissors', 'paper', 'rock']
+    return worsening[worsening.index(to_lose_to) + 1]
 
 
 def letter_to_shape(letter):
@@ -43,7 +32,7 @@ def letter_to_selector(letter):
     if letter == 'X':
         return next_worse
     elif letter == 'Y':
-        return same
+        return lambda t: t
     elif letter == 'Z':
         return next_better
     else:
