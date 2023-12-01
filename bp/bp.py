@@ -1,4 +1,4 @@
-# Python 3.10.0
+# Python 3.12.0
 
 
 def get_input():

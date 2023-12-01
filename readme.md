@@ -23,7 +23,9 @@ rest are in pretty much whatever. Usually one of those two though.
 
 ~~Uh oh 2021. Maybe I will get a better rate.~~
 
-2022: We'll just have to see how it goes.
+~~2022: We'll just have to see how it goes.~~
+
+Okay so it's 2023 now and I'm gonna try but no promises.
 
 My answer for each part is listed in the corresponding challenge file, but the
 answers are not found in the source files. This way, someone could
