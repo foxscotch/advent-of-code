@@ -5,7 +5,7 @@ from shutil import copyfile
 
 
 BOILERPLATE_DIRECTORY = Path("./bp/")
-DAY_PATTERN = re.compile("(\d{4}).(\d{2}).?(\d)?")
+DAY_PATTERN = re.compile(r"(\d{4}).(\d{2}).?(\d)?")
 
 
 class BoilerplateException(Exception):
