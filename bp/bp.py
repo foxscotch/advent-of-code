@@ -1,12 +1,15 @@
 # Python 3.12.0
 
 
-def get_input():
+import typing
+
+
+def get_input() -> list[str]:
     with open("input.txt", "r") as f:
         return f.read().split()
 
 
-def main():
+def main() -> typing.Any:
     puzzle = get_input()
 
     # Code here
