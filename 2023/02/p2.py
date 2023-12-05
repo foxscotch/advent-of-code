@@ -1,5 +1,6 @@
 # Python 3.12.0
 
+from dataclasses import dataclass
 from enum import Enum
 from typing import Generator
 
@@ -7,14 +8,11 @@ from typing import Generator
 LIMITS = { 'red': 12, 'green': 13, 'blue': 14 }
 
 
+@dataclass
 class Sample:
-    def __init__(self, red: int, green: int, blue: int):
-        self.red = red
-        self.green = green
-        self.blue = blue
-
-    def __repr__(self):
-        return f'Sample(r={self.red}, g={self.green}, b={self.blue})'
+    red: int
+    green: int
+    blue: int
 
     @classmethod
     def parse(cls, string: str):
